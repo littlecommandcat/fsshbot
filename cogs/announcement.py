@@ -128,10 +128,11 @@ class GrabAnnounce(commands.Cog):
     async def before_grab_data(self):
         await self.bot.wait_until_ready()
 
-        channel = self.bot.get_channel(FORUM_CHANNEL_ID)
+        channel = self.bot.get_channel(int(FORUM_CHANNEL_ID))
+        print("[公告] Get channel")
 
         if not isinstance(channel, discord.ForumChannel):
-            raise RuntimeError(
+            print(
                 f"{FORUM_CHANNEL_ID} 不是 Discord Forum Channel"
             )
 
