@@ -1,0 +1,6 @@
+aiohttp
+requests
+discord.py
+datetime
+python-dotenv
+beautifulsoup4
