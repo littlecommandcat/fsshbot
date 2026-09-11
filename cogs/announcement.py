@@ -104,7 +104,7 @@ class GrabAnnounce(commands.Cog):
             description=f"```{news.content[:3500]}```",
             url=news.url
         )
-        embed.add_field(name="公告時間：s", value=f"> {str(news.time)}", inline=True)
+        embed.add_field(name="公告時間：", value=f"> {str(news.time)}", inline=True)
         embed.add_field(name="公告單位：", value=f"> {str(news.unitname)}", inline=True)
         embed.add_field(name="點閱：", value=f"> {str(news.clicks)}", inline=True)
         embed.add_field(name="發布者：", value=f"> {news.name}({news.issuer})", inline=True)
