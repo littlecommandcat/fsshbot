@@ -54,7 +54,8 @@ class GrabAnnounce(commands.Cog):
             for announcement_id in AnnouncementId:
                 results, page = await self.client.get_news(
                     announcement_id,
-                    pageinfo=True
+                    pageinfo=True,
+                    max_rows=15
                 )
                 if results:
                     all_news.extend(results)
