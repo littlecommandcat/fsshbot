@@ -102,7 +102,7 @@ class GrabAnnounce(commands.Cog):
         embed = discord.Embed(
             title=str(news.title),
             color=discord.Color.blurple(),
-            description=f"```{news.content[:3500]}```",
+            description=f"```{news.content[:3500]if news.content else "<None-Content>"}```",
             url=news.url
         )
         embed.add_field(name="公告時間：", value=f"> {str(news.time)}", inline=True)

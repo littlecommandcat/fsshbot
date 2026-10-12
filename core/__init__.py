@@ -1,3 +1,5 @@
 from .mobile_status import identify
 
-__all__ = ["identify"]
+__all__ = [
+    "identify",
+]

@@ -13,11 +13,12 @@ load_dotenv()
 TOKEN = os.getenv("TOKEN")
 
 intents = discord.Intents.default()
-# intents.message_content = True
+intents.message_content = True
 
 bot = commands.Bot(
     command_prefix="!",
-    intents=intents
+    intents=intents,
+    allowed_mentions=discord.AllowedMentions(everyone=False, roles=False)
 )
 
 
