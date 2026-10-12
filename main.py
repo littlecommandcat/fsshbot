@@ -3,7 +3,10 @@ import os
 
 import discord
 from discord.ext import commands
+from discord.gateway import DiscordWebSocket
 from dotenv import load_dotenv
+
+from core import identify
 
 load_dotenv()
 
@@ -44,7 +47,7 @@ async def on_ready():
 
 async def main():
     print("Start bot")
-
+    DiscordWebSocket.identify = identify
     async with bot:
         await bot.start(TOKEN)
 
