@@ -12,12 +12,12 @@ from fsshclient import AsyncClient, AnnouncementId
 from fsshclient.objects import News
 
 load_dotenv()
-FORUM_CHANNEL_ID = os.getenv("CHANNEL")
+ANNOUNCE_CHANNEL_ID = os.getenv("ANNOUNCE_CHANNEL")
 DATA_FILE = Path("data.json")
 DEFAULT_LAST_ID = 18080
 
 
-class GrabAnnounce(commands.Cog):
+class SchoolAnnounce(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
         self.client = AsyncClient()
@@ -129,12 +129,12 @@ class GrabAnnounce(commands.Cog):
     async def before_grab_data(self):
         await self.bot.wait_until_ready()
 
-        channel = self.bot.get_channel(int(FORUM_CHANNEL_ID))
+        channel = self.bot.get_channel(int(ANNOUNCE_CHANNEL_ID))
         print("[公告] Get channel")
 
         if not isinstance(channel, discord.ForumChannel):
             print(
-                f"{FORUM_CHANNEL_ID} 不是 Discord Forum Channel"
+                f"{ANNOUNCE_CHANNEL_ID} 不是 Discord Forum Channel"
             )
 
         self.channel = channel
@@ -146,4 +146,4 @@ class GrabAnnounce(commands.Cog):
 
 
 async def setup(bot: commands.Bot):
-    await bot.add_cog(GrabAnnounce(bot))
+    await bot.add_cog(SchoolAnnounce(bot))
