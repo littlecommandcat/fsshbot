@@ -6,12 +6,10 @@ import os
 
 import discord
 from discord.ext import commands, tasks
-from dotenv import load_dotenv
 
 from fsshclient import AsyncClient, AnnouncementId
 from fsshclient.objects import News
 
-load_dotenv()
 ANNOUNCE_CHANNEL_ID = os.getenv("ANNOUNCE_CHANNEL")
 DATA_FILE = Path("data.json")
 DEFAULT_LAST_ID = 18080

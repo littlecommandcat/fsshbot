@@ -8,9 +8,7 @@ import os
 import aiohttp
 import discord
 from discord.ext import commands, tasks
-from dotenv import load_dotenv
 
-load_dotenv()
 KBOOK_CHANNEL_ID = os.getenv("KBOOK_CHANNEL")
 DATA_FILE = Path("kbook_data.json")
 DEFAULT_LAST_ID = 0
