@@ -1,19 +1,41 @@
 # fsshbot
 
-建立於[fsshclient](https://github.com/littlecommandcat/fsshclient)之基礎上
+建立於[fsshclient](https://github.com/littlecommandcat/fsshclient)、[fssaclient](https://github.com/littlecommandcat/fssaclient)及[Discordpy-Music](https://github.com/littlecommandcat/Discordpy-Music)的自動化機器人
+
+## 設置
 
 `.env.example`自行替換配製成`.env`
 ```ini
-TOKEN=yourdiscordbottoken  # bot token
-ANNOUNCE_CHANNEL=yourchannelid  # 公告論壇頻道id
-KBOOK_CHANNEL=yourkbookchannelid  # K書中心公告論壇頻道id（與 ANNOUNCE_CHANNEL 不同）
+TOKEN=yourdiscordbottoken
+ANNOUNCE_CHANNEL=yourchannelid
+KBOOK_CHANNEL=yourchannelid
+DYNAMIC_CHANNEL=yourchannelid
+MUSIC_CHANNEL=yourchannelid
+
+LAVALINK_HOST=https://yourhost
+LAVALINK_PORT=443
+LAVALINK_PASSWORD=yourpassword
 ```
 
-`ANNOUNCE_CHANNEL` 供 `cogs/announcement.py` 使用（`last_id` 記錄於 `data.json`）；`KBOOK_CHANNEL` 供 `cogs/kbook_announcement.py` 使用，負責轉發 [K書中心](https://kbook.fssh.khc.edu.tw/) 公告（`last_id` 與已發布清單 `seen_ids` 記錄於 `kbook_data.json`）。兩個頻道皆須為 Discord 論壇頻道。
+`ANNOUNCE_CHANNEL` 及 `KBOOK_CHANNEL` 兩個頻道皆須為論壇頻道，`MUSIC_CHANNEL` 及 `DYNAMIC_CHANNEL` 則須為語音頻道。
+
+## 安裝
 
 安裝相關套件
 ```ini
-pip install requirements.txt
+pip install -r requirements.txt
 ```
+
+## 功能
+
+- 抓取校網的公告並發送貼文
+
+- 抓取K書中心公告並發送貼文
+
+- 動態語音頻道創見與刪除
+
+- 無限循環播放校歌(可使用Lavalink或Nodelink)
+
+## 測試
 
 `test.py`進行測試[fsshclient](https://github.com/littlecommandcat/fsshclient)
