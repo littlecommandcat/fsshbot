@@ -10,14 +10,16 @@ TOKEN=yourdiscordbottoken
 ANNOUNCE_CHANNEL=yourchannelid
 KBOOK_CHANNEL=yourchannelid
 DYNAMIC_CHANNEL=yourchannelid
-MUSIC_CHANNEL=yourchannelid
+TYPHOON_CHANNEL=yourchannelid
 
+# 可選
+MUSIC_CHANNEL=yourchannelid
 LAVALINK_HOST=https://yourhost
 LAVALINK_PORT=443
 LAVALINK_PASSWORD=yourpassword
 ```
 
-`ANNOUNCE_CHANNEL` 及 `KBOOK_CHANNEL` 兩個頻道皆須為論壇頻道，`MUSIC_CHANNEL` 及 `DYNAMIC_CHANNEL` 則須為語音頻道。
+`ANNOUNCE_CHANNEL` 及 `KBOOK_CHANNEL` 兩個頻道皆須為論壇頻道，`MUSIC_CHANNEL` 及 `DYNAMIC_CHANNEL` 則須為語音頻道(未提及則為一般訊息頻道)。
 
 ## 安裝
 

@@ -11,7 +11,7 @@ from fsshclient import AsyncClient, AnnouncementId
 from fsshclient.objects import News
 
 ANNOUNCE_CHANNEL_ID = os.getenv("ANNOUNCE_CHANNEL")
-DATA_FILE = Path("data.json")
+DATA_FILE = Path("announce_data.json")
 DEFAULT_LAST_ID = 18080
 
 
@@ -21,11 +21,11 @@ class SchoolAnnounce(commands.Cog):
         self.client = AsyncClient()
         self.last_id: int = self.load_last_id()
         self.channel: discord.ForumChannel | None = None
-        self.grab_data.start()
+        self.data_grabber.start()
 
     def cog_unload(self):
-        if self.grab_data.is_running():
-            self.grab_data.cancel()
+        if self.data_grabber.is_running():
+            self.data_grabber.cancel()
         asyncio.create_task(self.client.close())
 
     def load_last_id(self) -> int:
@@ -45,7 +45,7 @@ class SchoolAnnounce(commands.Cog):
         )
 
     @tasks.loop(minutes=10)
-    async def grab_data(self):
+    async def data_grabber(self):
         try:
             all_news = []
 
@@ -123,7 +123,7 @@ class SchoolAnnounce(commands.Cog):
             print(f"Create [{str(news.title)[:15]}] error: {e}")
             raise
 
-    @grab_data.before_loop
+    @data_grabber.before_loop
     async def before_grab_data(self):
         await self.bot.wait_until_ready()
 

@@ -35,13 +35,18 @@ class MusicSystem(commands.Cog):
         self.pool = lava_lyra.NodePool()
         self.node: lava_lyra.Node | None = None
         self.music_channel: discord.VoiceChannel | None = None
+        self._enabled: bool = True
         self._setup_task: asyncio.Task | None = None
         self._reconnect_task: asyncio.Task | None = None
         self._node_ready = False
         self._connect_lock = asyncio.Lock()
 
     async def cog_load(self):
-        self._setup_task = asyncio.create_task(self._setup_node())
+        if not LAVALINK_HOST.startswith("http") or not MUSIC_CHANNEL:
+            self._enabled = False
+
+        if self._enabled:
+            self._setup_task = asyncio.create_task(self._setup_node())
 
     async def cog_unload(self):
         for task in (self._setup_task, self._reconnect_task):
@@ -184,7 +189,7 @@ class MusicSystem(commands.Cog):
 
     @commands.Cog.listener()
     async def on_voice_state_update(self, member: discord.Member, before: discord.VoiceState, after: discord.VoiceState):
-        if not self.music_channel or self.bot.user is None:
+        if not self.music_channel or self.bot.user is None or not self._enabled:
             return
 
         if member.id != self.bot.user.id or before.channel is None or after.channel is not None:
