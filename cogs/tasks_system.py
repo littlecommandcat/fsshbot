@@ -223,6 +223,8 @@ class TaskSystem(commands.Cog):
                 return
             now = int(time.time())
             channel = await self.get_channel()
+            if not channel:
+                return
             remaining = []
             for task in task_list:
                 timestamp = self.normalize_timestamp(task.get("timestamp"))
