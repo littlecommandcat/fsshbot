@@ -11,6 +11,7 @@ ANNOUNCE_CHANNEL=yourchannelid
 KBOOK_CHANNEL=yourchannelid
 DYNAMIC_CHANNEL=yourchannelid
 TYPHOON_CHANNEL=yourchannelid
+TASKS_CHANNEL=yourchannelid
 
 # 可選
 MUSIC_CHANNEL=yourchannelid
@@ -35,6 +36,8 @@ pip install -r requirements.txt
 - 抓取K書中心公告並發送貼文
 
 - 動態語音頻道創見與刪除
+
+- 自動提醒的通知排程
 
 - 無限循環播放校歌(可使用Lavalink或Nodelink)
 

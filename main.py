@@ -18,7 +18,7 @@ intents.message_content = True
 bot = commands.Bot(
     command_prefix="!",
     intents=intents,
-    allowed_mentions=discord.AllowedMentions(everyone=False, roles=False)
+    allowed_mentions=discord.AllowedMentions(everyone=False)
 )
 
 
@@ -43,7 +43,8 @@ async def setup_hook():
 
 @bot.event
 async def on_ready():
-    print(f"Bot login as {bot.user}({bot.user.id})")
+    commnad_count = len(await bot.tree.sync())
+    print(f"Bot login as {bot.user}({bot.user.id})\nRegister commands: {commnad_count}")
 
 
 async def main():
