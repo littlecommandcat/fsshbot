@@ -21,7 +21,6 @@ WEEKDAY_MAP = {
 WEEKDAY_NAMES = ["一", "二", "三", "四", "五", "六", "日"]
 REPEAT_CHOICES = {
     "none": "不重複",
-    "daily": "每天",
     "weekly_mon": "每週一",
     "weekly_tue": "每週二",
     "weekly_wed": "每週三",
@@ -93,8 +92,6 @@ class TaskSystem(commands.Cog):
 
     @staticmethod
     def parse_repeat(value: str) -> tuple[str | None, int | None]:
-        if value == "daily":
-            return "daily", None
         if value.startswith("weekly_"):
             suffix = value.split("_", 1)[1]
             return "weekly", WEEKDAY_MAP.get(suffix)
@@ -102,16 +99,12 @@ class TaskSystem(commands.Cog):
 
     @staticmethod
     def describe_repeat(repeat, weekday) -> str:
-        if repeat == "daily":
-            return "每天"
         if repeat == "weekly" and weekday is not None:
             return f"每週{WEEKDAY_NAMES[weekday]}"
         return "不重複"
 
     @staticmethod
     def compute_next_time(timestamp: int, repeat, weekday) -> int | None:
-        if repeat == "daily":
-            return timestamp + 86400
         if repeat == "weekly" and weekday is not None:
             dt = datetime.fromtimestamp(timestamp, TZ)
             days_ahead = (weekday - dt.weekday()) % 7
@@ -299,7 +292,7 @@ class TaskSystem(commands.Cog):
         title="任務標題",
         content="任務內容",
         execute_time="執行時間（可用自動建議）",
-        repeat="循環選項（不重複 / 每天 / 每週X）",
+        repeat="循環選項（不重複 / 每週X）",
         mention="要通知的身分組",
         markdown="是否需要markdown"
     )
